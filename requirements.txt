@@ -5,3 +5,6 @@ finance-datareader
 datetime
 yfinance
 plotly
+matplotlib.pyplot
+random
+streamlit_extras
