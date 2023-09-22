@@ -1020,7 +1020,7 @@ def valuation_strategy(df, df_history, input_for_collecting, input_strategy, dis
     period = period.total_seconds() / seconds_per_year # 경과기간
 
     # Strategy Return 계산
-    hpr_strategy = np.log(final_balance) - np.log(initial_balance)
+    hpr_strategy = final_balance / initial_balance -1
     df_res["Return(%)"] = f"{hpr_strategy*100:.3f}"
 
 
@@ -1029,7 +1029,7 @@ def valuation_strategy(df, df_history, input_for_collecting, input_strategy, dis
     df_res["Annual Return(%)"] = f"{annual_return_strategy*100:.3f}"
 
     # CAGR (기하수익률)
-    CAGR = (np.log(final_balance)-np.log(initial_balance) +1) ** (1/period) -1  
+    CAGR = (final_balance / initial_balance) ) ** (1/period) -1  
     df_res["CAGR"] = num_db(CAGR)
 
     
@@ -1044,8 +1044,8 @@ def valuation_strategy(df, df_history, input_for_collecting, input_strategy, dis
         last_trade_date = df['sell'].index[-1]
 
     # hpr_buy_hold
-    hpr_buy_hold = (np.log(df["Close"][last_trade_date] - df["Close"][last_trade_date]*(transaction_fee+tax+tax2))\
-                        - np.log(df["Close"][0] + df["Close"][0]*transaction_fee))
+    hpr_buy_hold = (df["Close"][last_trade_date] - df["Close"][last_trade_date]*(transaction_fee+tax+tax2)\
+                        / (df["Close"][0] + df["Close"][0]*transaction_fee)
     df_res["Buy&Hold return"] = f"{hpr_buy_hold*100:.3f}%"
 
     # annulalized hpr_buy_hold
