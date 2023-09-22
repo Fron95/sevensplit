@@ -65,6 +65,7 @@ def start_portfolio() :
     # 시장 (자동)
     firms = ['005930','086520','068270','005490','051910']
     #balance = np.zeros(k)
+    st.subheader("4. 포트폴리오에 포함될 종목코드와 비중을 입력해주세요.")
     co = st.columns(3)
     ind = 0
     for i in range(k//3+1):
