@@ -1,3 +1,5 @@
+import streamlit as st
+
 st.caption("향후 업데이트 예정사항 입니다.")
 st.caption("- 개선사항3. 분봉자료 얻기")
 st.caption("- 개선사항4. 최적 퍼센트 추천")
