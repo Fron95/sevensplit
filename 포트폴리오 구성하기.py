@@ -36,13 +36,17 @@ def start_portfolio() :
         with cols[0]:
             st.subheader("1. 주가데이터 빈도")
             interval = st.selectbox("", ['2분', '1시간', '1일']).replace('분',"m").replace('시간','h').replace('일','d')
+            st.caption("매매빈도가 높은 세븐스플릿 특성상 분단위 정보가 백테스팅에 적합하지만, 오픈소스에서 분단위 자료는 과거 50일만 조회가능한 점 양해부탁드려요")
+            st.caption("주가데이처 출처 : 야후파이낸스")
         with cols[1] :
             #시작 / 종료
-            st.subheader("2. 시작날짜-종료날짜")
+            st.subheader("2. 시작-종료날짜")
+            
             import datetime        
             now = datetime.date.today()
+
             two_m_ago = now - datetime.timedelta(days=50)
-            start_date, end_date = st.date_input("", (two_m_ago,now))
+            start_date, end_date = st.date_input("", (two_m_ago,now), min_value=two_m_ago if interval=="2m" else None)
         with cols[2] :
             st.subheader("3. 포트폴리오 포함 종목 데이터")
             stock_names = []
@@ -1288,9 +1292,16 @@ st.header("1. 세븐스플릿을 소개합니다.")
 c1, c2 = st.columns(2)
 with c1 :
     st.write("세븐스플릿 전략의 백테스팅 페이지입니다.")
+    st.write("세븐스플릿의 간략묘사는, 매매 횟수를 n회로 분할하여 시간차를 두고 매매를 진행하는 겁니다.")
+    st.write("앞 전의 거래로 부터 u% 주가가 상승할 경우 익절, 또는 d% 하락할 경우 추가매매를 진행합니다.")
+    st.write("구불구불한 그래프의 모양을 이용하는 전략인 것입니다.")
+    st.write("조악한 저의 도구가 전략을 이해하는 정도라도 도움 되었으면 좋겠습니다..")
+    st.write("언제든지 편안하게 피드백 주세요..")
+    st.write("성투하세요~")
+
     
 with c2 :           
-    st.write("조회가능한 종목의 목록은 다음과 같습니다.")
+    st.subheader("조회가능한 종목 목록")
     ## 상장사 목록조회
     #cl_needed_at_list = ["Code", "Name", "Market", "Marcap"]
     #listed_stock_list = pd.read_csv("listed_stock_list.csv")
