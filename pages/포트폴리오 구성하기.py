@@ -1045,7 +1045,7 @@ def valuation_strategy(df, df_history, input_for_collecting, input_strategy, dis
 
     # hpr_buy_hold
     hpr_buy_hold = (df["Close"][last_trade_date] - df["Close"][last_trade_date]*(transaction_fee+tax+tax2))\
-                        / (df["Close"][0] + df["Close"][0]*transaction_fee)
+                        / (df["Close"][0] + df["Close"][0]*transaction_fee) -1
     df_res["Buy&Hold return"] = f"{hpr_buy_hold*100:.3f}%"
 
     # annulalized hpr_buy_hold
