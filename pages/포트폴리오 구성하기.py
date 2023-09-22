@@ -815,8 +815,7 @@ def settled_history(df_settled, input_for_collecting, input_strategy, display=Tr
                         df_history["Sold At"]*(tax+tax2+transaction_fee)) * df_history["Amount"]
     df_history["Money Earned"] = (df_history["Sold At"] -df_history["Buy At"] )*df_history["Amount"]\
           - df_history['fee']
-    df_history["Money Earned(%)"] = (np.log(df_history["Money Earned"]) \
-                                    - np.log(df_history["Buy At"]))
+    df_history["Money Earned(%)"] = df_history["Money Earned"] / df_history["Buy At"] -1
     
     if display : 
         st.divider()    
