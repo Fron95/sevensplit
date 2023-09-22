@@ -6,5 +6,4 @@ datetime
 yfinance
 plotly
 matplotlib
-random
 streamlit_extras
