@@ -1029,7 +1029,7 @@ def valuation_strategy(df, df_history, input_for_collecting, input_strategy, dis
     df_res["Annual Return(%)"] = f"{annual_return_strategy*100:.3f}"
 
     # CAGR (기하수익률)
-    CAGR = (final_balance / initial_balance) ) ** (1/period) -1  
+    CAGR = (final_balance / initial_balance)  ** (1/period) -1  
     df_res["CAGR"] = num_db(CAGR)
 
     
